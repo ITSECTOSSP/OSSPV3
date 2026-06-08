@@ -1,0 +1,59 @@
+# # -----------------------------
+# # Git
+# # -----------------------------
+.git
+.gitignore
+
+# # -----------------------------
+# # Node / Frontend
+# # -----------------------------
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-lock.yaml
+
+# # Build outputs
+dist
+build
+
+# # -----------------------------
+# # Laravel / PHP
+# # -----------------------------
+vendor
+composer.lock
+
+# # Laravel storage (keep structure if needed)
+# storage/*.key
+# storage/logs/*
+# storage/framework/cache/*
+# storage/framework/sessions/*
+# storage/framework/views/*
+
+
+# # -----------------------------
+# # OS / Editor
+# # -----------------------------
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+
+# # -----------------------------
+# # Docker files (optional)
+# # -----------------------------
+docker-compose.yml
+docker-compose.override.yml
+
+# # -----------------------------
+# # Tests & docs (optional)
+# # -----------------------------
+tests
+docs
+README.md
+
+# # -----------------------------
+# # Misc
+# # -----------------------------
+*.log
+*.tmp
+*.swp

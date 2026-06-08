@@ -1,0 +1,123 @@
+export const pillColors = [
+    // === 1–20 (soft pastel base) ===
+    'bg-rose-100 text-rose-700',
+    'bg-cyan-100 text-cyan-700',
+    'bg-emerald-100 text-emerald-700',
+    'bg-amber-100 text-amber-700',
+    'bg-violet-100 text-violet-700',
+    'bg-indigo-100 text-indigo-700',
+    'bg-sky-100 text-sky-700',
+    'bg-lime-100 text-lime-700',
+    'bg-fuchsia-100 text-fuchsia-700',
+    'bg-pink-100 text-pink-700',
+    'bg-red-100 text-red-700',
+    'bg-orange-100 text-orange-700',
+    'bg-yellow-100 text-yellow-700',
+    'bg-teal-100 text-teal-700',
+    'bg-green-100 text-green-700',
+    'bg-blue-100 text-blue-700',
+    'bg-purple-100 text-purple-700',
+    'bg-slate-100 text-slate-700',
+    'bg-gray-100 text-gray-700',
+    'bg-neutral-100 text-neutral-700',
+
+    // === 21–40 (medium tones) ===
+    'bg-rose-200 text-rose-800',
+    'bg-cyan-200 text-cyan-800',
+    'bg-emerald-200 text-emerald-800',
+    'bg-amber-200 text-amber-800',
+    'bg-violet-200 text-violet-800',
+    'bg-indigo-200 text-indigo-800',
+    'bg-sky-200 text-sky-800',
+    'bg-lime-200 text-lime-800',
+    'bg-fuchsia-200 text-fuchsia-800',
+    'bg-pink-200 text-pink-800',
+    'bg-red-200 text-red-800',
+    'bg-orange-200 text-orange-800',
+    'bg-yellow-200 text-yellow-800',
+    'bg-teal-200 text-teal-800',
+    'bg-green-200 text-green-800',
+    'bg-blue-200 text-blue-800',
+    'bg-purple-200 text-purple-800',
+    'bg-slate-200 text-slate-800',
+    'bg-gray-200 text-gray-800',
+    'bg-neutral-200 text-neutral-800',
+
+    // === 41–60 (strong tones) ===
+    'bg-rose-300 text-rose-900',
+    'bg-cyan-300 text-cyan-900',
+    'bg-emerald-300 text-emerald-900',
+    'bg-amber-300 text-amber-900',
+    'bg-violet-300 text-violet-900',
+    'bg-indigo-300 text-indigo-900',
+    'bg-sky-300 text-sky-900',
+    'bg-lime-300 text-lime-900',
+    'bg-fuchsia-300 text-fuchsia-900',
+    'bg-pink-300 text-pink-900',
+    'bg-red-300 text-red-900',
+    'bg-orange-300 text-orange-900',
+    'bg-yellow-300 text-yellow-900',
+    'bg-teal-300 text-teal-900',
+    'bg-green-300 text-green-900',
+    'bg-blue-300 text-blue-900',
+    'bg-purple-300 text-purple-900',
+    'bg-slate-300 text-slate-900',
+    'bg-gray-300 text-gray-900',
+    'bg-neutral-300 text-neutral-900',
+
+    // === 61–80 (accent variations) ===
+    'bg-rose-400 text-white',
+    'bg-cyan-400 text-white',
+    'bg-emerald-400 text-white',
+    'bg-amber-400 text-white',
+    'bg-violet-400 text-white',
+    'bg-indigo-400 text-white',
+    'bg-sky-400 text-white',
+    'bg-lime-400 text-white',
+    'bg-fuchsia-400 text-white',
+    'bg-pink-400 text-white',
+    'bg-red-400 text-white',
+    'bg-orange-400 text-white',
+    'bg-yellow-400 text-white',
+    'bg-teal-400 text-white',
+    'bg-green-400 text-white',
+    'bg-blue-400 text-white',
+    'bg-purple-400 text-white',
+    'bg-slate-400 text-white',
+    'bg-gray-400 text-white',
+    'bg-neutral-400 text-white',
+
+    // === 81–100 (bold/dark accents) ===
+    'bg-rose-500 text-white',
+    'bg-cyan-500 text-white',
+    'bg-emerald-500 text-white',
+    'bg-amber-500 text-white',
+    'bg-violet-500 text-white',
+    'bg-indigo-500 text-white',
+    'bg-sky-500 text-white',
+    'bg-lime-500 text-white',
+    'bg-fuchsia-500 text-white',
+    'bg-pink-500 text-white',
+    'bg-red-500 text-white',
+    'bg-orange-500 text-white',
+    'bg-yellow-500 text-white',
+    'bg-teal-500 text-white',
+    'bg-green-500 text-white',
+    'bg-blue-500 text-white',
+    'bg-purple-500 text-white',
+    'bg-slate-500 text-white',
+    'bg-gray-500 text-white',
+    'bg-neutral-500 text-white',
+];
+
+export const getPillColor = (id: string | number) => {
+    const str = String(id);
+
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = (hash << 5) - hash + str.charCodeAt(i);
+        hash |= 0;
+    }
+
+    return pillColors[Math.abs(hash) % pillColors.length];
+};
