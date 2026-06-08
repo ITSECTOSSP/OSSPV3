@@ -5,6 +5,7 @@ import { TrackingTitle } from "@/types/document-tracking";
 import { Link } from "@inertiajs/react";
 import { route } from "ziggy-js";
 
+
 type Props = {
     trackingTitles: TrackingTitle[];
     userSectionId: number;

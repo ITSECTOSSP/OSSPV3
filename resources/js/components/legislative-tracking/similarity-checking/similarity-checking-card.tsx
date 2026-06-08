@@ -1,7 +1,8 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { TrackingTitle } from '@/types/document-tracking';
 import { Clock, Inbox } from 'lucide-react';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import SimilarityList from './similarity-checking-card-list';
 
 type Props = {
     similarityTitles: TrackingTitle[];
@@ -38,6 +39,13 @@ export default function SimilarityCheckingCard({
         [similarityTitles, docketingTitles],
     );
 
+    const [selected, setSelected] = useState<'similarity' | 'docketing' | null>(
+        null,
+    );
+
+    const getKey = (id: number) =>
+        id === 1 ? 'similarity' : ('docketing' as const);
+
     return (
         <div className="space-y-6 pb-4">
             <div className="space-y-2">
@@ -57,14 +65,36 @@ export default function SimilarityCheckingCard({
                     return (
                         <Card
                             key={card.id}
-                            className="relative cursor-pointer overflow-hidden border bg-background shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                            onClick={() =>
+                                setSelected((prev) =>
+                                    prev === getKey(card.id)
+                                        ? null
+                                        : getKey(card.id),
+                                )
+                            }
+                            className={`relative cursor-pointer overflow-hidden border bg-background shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl ${
+                                selected === getKey(card.id)
+                                    ? `translate-x-[2px] scale-[1.02] border-primary/30 bg-primary/5 shadow-lg ring-1 shadow-primary/10 ring-primary/30`
+                                    : ''
+                            } `}
                         >
+                            {/* Accent bar */}
                             <div
-                                className={`absolute top-0 left-0 h-full w-1 ${card.accent}`}
-                            />
-                            <div
-                                className={`absolute -top-10 -right-10 h-40 w-40 rounded-full blur-3xl ${card.glow}`}
-                            />
+                                className={`absolute top-0 left-0 h-full transition-all duration-300 ease-out ${selected === getKey(card.id) ? 'w-1.5' : 'w-1'} ${
+                                    card.id === 1
+                                        ? 'bg-gradient-to-b from-amber-400 via-amber-500 to-amber-600'
+                                        : 'bg-gradient-to-b from-blue-400 via-blue-500 to-blue-600'
+                                } `}
+                            >
+                                {/* glow aura */}
+                                <div
+                                    className={`absolute inset-0 blur-lg transition-opacity duration-300 ${selected === getKey(card.id) ? 'opacity-100' : 'opacity-0'} ${
+                                        card.id === 1
+                                            ? 'bg-amber-400/40'
+                                            : 'bg-blue-400/40'
+                                    } `}
+                                />
+                            </div>
 
                             <CardContent className="relative flex items-center justify-between p-6">
                                 <div className="space-y-1">
@@ -92,6 +122,16 @@ export default function SimilarityCheckingCard({
                         </Card>
                     );
                 })}
+            </div>
+            {/* DETAILS LIST */}
+            <div className="flex w-full flex-col">
+                {selected === 'similarity' && (
+                    <SimilarityList titles={similarityTitles} />
+                )}
+
+                {selected === 'docketing' && (
+                    <SimilarityList titles={docketingTitles} />
+                )}
             </div>
         </div>
     );

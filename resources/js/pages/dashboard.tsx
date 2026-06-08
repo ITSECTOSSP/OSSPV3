@@ -43,19 +43,21 @@ export default function Dashboard({
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={userSectionName || 'Employees Dashboard'} />
-
-            <div className="relative flex-1 gap-2 overflow-hidden border border-sidebar-border/70 p-3">
-                <TrackingStatusCards
-                    trackingTitles={liveTitles}
-                    userSectionId={currentUser?.ossp_sections_id}
-                />
-            </div>
-
-            <div className="relative flex-1 gap-2 overflow-hidden border border-sidebar-border/70 p-3">
-                <SimilarityCheckingCard 
-                similarityTitles={similarityTitles} 
-                docketingTitles={docketingTitles}
-                />
+            <div className="flex flex-col gap-2">
+                {/*Document Tracking by Status*/}
+                 <div className="border p-3">
+                    <TrackingStatusCards
+                        trackingTitles={liveTitles}
+                        userSectionId={currentUser?.ossp_sections_id}
+                    />
+                </div>
+                {/*Document Tracking by For Legislative Measures*/}
+                 <div className="border p-3">
+                    <SimilarityCheckingCard
+                        similarityTitles={similarityTitles}
+                        docketingTitles={docketingTitles}
+                    />
+                </div>
             </div>
         </AppLayout>
     );
